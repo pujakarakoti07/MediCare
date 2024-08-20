@@ -13,8 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class AppointmentController {
     @Autowired
     AppointmentService service;
-    @PostMapping("/appointment")
-    public void setAppointment(@RequestBody Appointment a){
-        service.setAppointment(a);
-    }
+
 }

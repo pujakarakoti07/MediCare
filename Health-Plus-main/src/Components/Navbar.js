@@ -43,18 +43,6 @@ function Navbar() {
           </Link>
         </li>
         <li>
-        <Link to="/login" className="navbar-links">
-            Patient Login
-          </Link>
-          
-          
-        </li>
-        <li>
-          <Link to="/register" className="navbar-links">
-            Resgister
-          </Link>
-        </li>
-        <li>
           <Link to="/services" className="navbar-links">
             Services
           </Link>
@@ -73,6 +61,11 @@ function Navbar() {
           <a href="#doctors" className="navbar-links">
             Doctors
           </a>
+        </li>
+        <li>
+          <Link to="/login" className="navbar-links">
+            Patient Login
+          </Link>
         </li>
       </ul>
 
