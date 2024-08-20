@@ -43,7 +43,7 @@ function Register() {
         toast.info("Registration successful!");
         setTimeout(() => {
           navigate("/login");
-        }, 2000); // delay toast adjust
+        }, 1000); // delay toast adjust
       } else {
         toast.error("Registration failed! Please check your details.");
       }

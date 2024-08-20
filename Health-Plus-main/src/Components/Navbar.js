@@ -8,10 +8,12 @@ import {
 import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "./security/AuthProvider";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const openNav = () => {
     setNav(!nav);
@@ -38,35 +40,29 @@ function Navbar() {
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
-          <Link to="/" className="navbar-links">
-            Home
-          </Link>
+          <Link to="/" className="navbar-links">Home</Link>
         </li>
         <li>
-          <Link to="/services" className="navbar-links">
-            Services
-          </Link>
+          <a href="#services" className="navbar-links">Services</a>
         </li>
         <li>
-          <a href="#about" className="navbar-links">
-            About
-          </a>
+          <a href="#about" className="navbar-links">About</a>
         </li>
         <li>
-          <a href="#reviews" className="navbar-links">
-            Reviews
-          </a>
+          <a href="#reviews" className="navbar-links">Reviews</a>
         </li>
         <li>
-          <a href="#doctors" className="navbar-links">
-            Doctors
-          </a>
+          <a href="#doctors" className="navbar-links">Doctors</a>
         </li>
-        <li>
-          <Link to="/login" className="navbar-links">
-            Patient Login
-          </Link>
-        </li>
+        {isAuthenticated ? (
+          <li>
+            <button onClick={logout} className="navbar-links">Logout</button>
+          </li>
+        ) : (
+          <li>
+            <Link to="/login" className="navbar-links">Patient Login</Link>
+          </li>
+        )}
       </ul>
 
       <button
@@ -86,35 +82,29 @@ function Navbar() {
 
         <ul className="mobile-navbar-links">
           <li>
-            <Link onClick={openNav} to="/">
-              Home
-            </Link>
+            <Link onClick={openNav} to="/">Home</Link>
           </li>
           <li>
-            <a onClick={openNav} href="#services">
-              Services
-            </a>
+            <a onClick={openNav} href="#services">Services</a>
           </li>
           <li>
-            <a onClick={openNav} href="#about">
-              About
-            </a>
+            <a onClick={openNav} href="#about">About</a>
           </li>
           <li>
-            <a onClick={openNav} href="#reviews">
-              Reviews
-            </a>
+            <a onClick={openNav} href="#reviews">Reviews</a>
           </li>
           <li>
-            <a onClick={openNav} href="#doctors">
-              Doctors
-            </a>
+            <a onClick={openNav} href="#doctors">Doctors</a>
           </li>
-          <li>
-            <a onClick={openNav} href="#contact">
-              Contact
-            </a>
-          </li>
+          {isAuthenticated ? (
+            <li>
+              <button onClick={() => { openNav(); logout(); }} className="mobile-navbar-links">Logout</button>
+            </li>
+          ) : (
+            <li>
+              <Link onClick={openNav} to="/login">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
 

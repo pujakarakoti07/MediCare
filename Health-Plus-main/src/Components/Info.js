@@ -8,7 +8,6 @@ function Info() {
   return (
     
     <div className="info-section" id="services">
-      <Navbar/>
       <div className="info-title-content">
         <h3 className="info-title">
           <span>What We Do</span>
