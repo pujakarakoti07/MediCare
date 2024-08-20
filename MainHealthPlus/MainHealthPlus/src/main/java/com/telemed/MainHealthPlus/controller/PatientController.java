@@ -37,5 +37,5 @@ public class PatientController {
         }
         return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
     }
-    
+
 }
