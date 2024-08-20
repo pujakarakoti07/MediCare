@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@EnableJpaRepositories
 @Repository
 public interface AppointmentsRepo extends JpaRepository<Appointment, Integer> {
     

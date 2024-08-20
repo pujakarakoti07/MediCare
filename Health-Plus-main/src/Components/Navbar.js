@@ -43,7 +43,7 @@ function Navbar() {
           <Link to="/" className="navbar-links">Home</Link>
         </li>
         <li>
-          <Link to="/services" className="navbar-links">Services</Link>
+          <a href="#services" className="navbar-links">Services</a>
         </li>
         <li>
           <a href="#about" className="navbar-links">About</a>
