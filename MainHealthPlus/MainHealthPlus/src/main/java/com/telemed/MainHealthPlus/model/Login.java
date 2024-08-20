@@ -2,49 +2,53 @@ package com.telemed.MainHealthPlus.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import org.springframework.stereotype.Component;
-
 
 @Entity
 public class Login {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue
+    private Integer id;
     private String email;
     private String password;
     public Login(){}
 
+    public Login(Integer id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Login(int id,String password, String email){
-        this.password=password;
-        this.email=email;
-        this.id=id;
-    }
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPass(String pass) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public String toString() {
+        return "Login{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
