@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 function AppointmentForm() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  }, []);
 
   const [patientName, setPatientName] = useState("");
   const [patientNumber, setPatientNumber] = useState("");
@@ -17,15 +17,10 @@ function AppointmentForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    const p={patientName,patientGender,patientNumber,appointmentTime, preferredMode}
-    
-    fetch("http://localhost:8080/appointment",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(p)
-    })
-    // Validate form inputs
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validations
     const errors = {};
     if (!patientName.trim()) {
       errors.patientName = "Patient name is required";
@@ -60,32 +55,49 @@ function AppointmentForm() {
       return;
     }
 
-    // Reset form fields and errors after successful submission
-    // setPatientName("");
-    // setPatientNumber("");
-    // setPatientGender("default");
-    // setAppointmentTime("");
-    // setPreferredMode("default");
-    // setFormErrors({});
+    const appointmentData = {
+      patientName,
+      patientNumber,
+      patientGender,
+      appointmentTime,
+      preferredMode
+    };
 
-    toast.success("Appointment Scheduled !", {
-      position: toast.POSITION.TOP_CENTER,
-      onOpen: () => setIsSubmitted(true),
-      onClose: () => setIsSubmitted(false),
-    });
-    
-    fetch("http://localhost:8080/appointment",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(p)
-      
-    })
-    console.log(p)
+    try {
+      const response = await fetch("http://localhost:8080/appointment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(appointmentData)
+      });
+
+      if (response.ok) {
+        toast.success("Appointment scheduled successfully!", {
+          position: toast.POSITION.TOP_CENTER
+        });
+        setIsSubmitted(true);
+        setPatientName("");
+        setPatientNumber("");
+        setPatientGender("default");
+        setAppointmentTime("");
+        setPreferredMode("default");
+        setFormErrors({});
+      } else {
+        toast.error("Failed to schedule appointment. Please try again.", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }
+    } catch (error) {
+      toast.error("An error occurred while scheduling the appointment.", {
+        position: toast.POSITION.TOP_CENTER
+      });
+    }
   };
 
   return (
     <div className="appointment-form-section">
-      <Navbar/>
+      <Navbar />
       <h1 className="legal-siteTitle">
         <Link to="/">
           Health <span className="legal-siteSign">+</span>
@@ -169,7 +181,9 @@ function AppointmentForm() {
             Confirm Appointment
           </button>
 
-          <p className="success-message" style={{display: isSubmitted ? "block" : "none"}}>Appointment details has been sent to the patients phone number via SMS.</p>
+          <p className="success-message" style={{ display: isSubmitted ? "block" : "none" }}>
+            Appointment details have been sent to the patient's phone number via SMS.
+          </p>
         </form>
       </div>
 

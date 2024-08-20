@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "./security/AuthProvider";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ function Login() {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -33,10 +35,14 @@ function Login() {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        const {firstName} = data;
+        
+        login(firstName); 
         toast.success("Login successful!");
         setTimeout(() => {
           navigate("/");
-        }, 2000); // delay toast adjust
+        }, 2000); // Delay for toast
       } else {
         toast.error("Login failed! Please check your credentials.");
         setShowErrorMessage(true);
@@ -54,7 +60,7 @@ function Login() {
           Login Form
         </h1>
         {showErrorMessage && (
-          <div className="errorMessage align-middle font-extrabold mt-4">
+          <div className="errorMessage align-middle font-bold mt-4">
             Authentication Failed. Check your Credentials
           </div>
         )}
@@ -82,14 +88,14 @@ function Login() {
               fullWidth
               onChange={handlePasswordChange}
             />
-            <div className="p-3 -ml-6x">
+            <div className="m-3">
               <Button variant="contained" type="submit">
                 Submit
               </Button>
             </div>
             <div className="p-3">
               <Link to="/register" className="mb-3">
-                Register
+                Don't have an account? Sign Up
               </Link>
             </div>
           </form>
