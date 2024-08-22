@@ -13,8 +13,9 @@ import java.util.List;
 @Service
 public class GoogleMapsService {
 
-    @Value("${google.maps.api.key}")
-    private String API_KEY;
+//    @Value("${google.maps.api.key}")
+//    private String API_KEY;
+     private static final String API_KEY = "AIzaSyDplEzPbW-VMv4ylEOrgHOxTT9_-nDJrfY";
 
     private final GeoApiContext context = new GeoApiContext.Builder()
             .apiKey(API_KEY)

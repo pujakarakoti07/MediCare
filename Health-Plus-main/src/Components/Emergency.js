@@ -6,7 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { Button } from '@mui/material';
 
 // Put key here
-const googleMapsApiKey = "";
+const googleMapsApiKey = "AIzaSyDplEzPbW-VMv4ylEOrgHOxTT9_-nDJrfY";
 
 function Emergency() {
   const [location, setLocation] = useState(null);

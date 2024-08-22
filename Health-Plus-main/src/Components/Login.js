@@ -96,6 +96,9 @@ function Login() {
             <div className="p-3">
               <Link to="/register" className="mb-3">
                 Don't have an account? Sign Up
+              </Link><br></br>
+              <Link to="/admin" className="mb-3">
+                Admin? Sign Up
               </Link>
             </div>
           </form>

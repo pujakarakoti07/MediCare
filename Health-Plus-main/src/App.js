@@ -11,7 +11,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import AuthProvider from "./Components/security/AuthProvider";
 import ProtectedRoute from "./Components/security/ProtectedRoute";
-
+import Admin from "./Components/Admin";
 function App() {
   return (
     <div className="App">
@@ -26,6 +26,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/*" element={<NotFound />} />
+            <Route path="/admin" element={<Admin/>} />
           </Routes>
         </AuthProvider>
       </Router>

@@ -6,10 +6,36 @@
     gap: 24px;
     background: linear-gradient(to right, #ECF2FF, #FBFCFF);
 }
+.Card{
+    border-radius: 12px;
+    animation: car;
+    animation-duration: 2s;
+    transition-property: all;
+    transition-duration: 1s;
+    padding: 13px;
+    box-shadow: 5px 8px 6px 8px #888888;
+}
+.Card:hover{
+    width: 300px;
+    height: 350px;
+}
+.card{
+    display: flex;
+}
+.appointment{
+    width: 94px;
+    height: 94px;
+    margin-left: 82px;
+    margin-top: 12px;
+}
 /* Text section */
 .text-section {
     width: 60%;
     padding: 0 32px;
+}
+.back{
+    width: 95%;
+    height: 0.5%;
 }
 .ambulence{
     width: 67px;
