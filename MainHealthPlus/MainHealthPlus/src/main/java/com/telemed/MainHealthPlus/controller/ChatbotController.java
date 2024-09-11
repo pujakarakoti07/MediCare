@@ -1,7 +1,6 @@
 package com.telemed.MainHealthPlus.controller;
 
 import com.telemed.MainHealthPlus.model.ChatResponse;
-import com.telemed.MainHealthPlus.service.Chat;
 import com.telemed.MainHealthPlus.service.HuggingFaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
