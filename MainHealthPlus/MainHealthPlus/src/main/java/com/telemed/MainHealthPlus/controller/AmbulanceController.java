@@ -37,7 +37,7 @@ public class AmbulanceController {
         return new ResponseEntity<>(nearbyHospitals, HttpStatus.OK);
     }
     @GetMapping("/data")
-    public void getAmbulanceData() {
-        ambulanceBookingService.getAmbulanceData();
+    public List<AmbulanceBooking> getAmbulanceData() {
+        return ambulanceBookingService.getAmbulanceData();
     }
 }

@@ -26,8 +26,8 @@ public class GoogleMapsService {
         try {
             PlacesSearchResponse response = PlacesApi
                     .nearbySearchQuery(context, new com.google.maps.model.LatLng(latitude, longitude))
-                    .keyword("hospital")
-                    .radius(5000)
+                    .keyword("nearby hospital")
+                    .radius(500)
                     .await();
 
             for (PlacesSearchResult result : response.results) {
